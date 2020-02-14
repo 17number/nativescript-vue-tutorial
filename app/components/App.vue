@@ -1,5 +1,5 @@
 <template>
-    <Page>
+    <Page @swipe="onSwipe">
         <ActionBar title="Home"/>
         <StackLayout>
             <Button text="Go to HelloWorld" @tap="goToHelloWorld" />
@@ -37,6 +37,28 @@
           stretched: true,
           props: { from: 'Home' },
         });
+      },
+      onSwipe(args) {
+        // 1: 左から右, 2: 右から左, 4: 下から上, 8: 上から下
+        let direction;
+        switch (args.direction) {
+          case 1:
+            direction = 'left to right';
+            break;
+
+          case 2:
+            direction = 'right to left';
+            break;
+
+          case 4:
+            direction = 'down to up';
+            break;
+
+          case 8:
+            direction = 'up to down';
+            break;
+        }
+        console.log(`onSwipe, direction: ${direction}(${args.direction})`);
       },
     },
   }
