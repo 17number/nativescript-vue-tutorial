@@ -17,15 +17,26 @@
     methods: {
       goToHelloWorld() {
         console.log('tapped button "go to helloworld"');
-        this.$navigateTo(HelloWorld);
+        this.$navigateTo(HelloWorld, {
+          transitionAndroid: { name: 'slide' },
+        });
       },
       showModal() {
         console.log('tapped button "show modal"');
-        this.$showModal(Modal, { props: { from: 'Home' }, });
+        this.$showModal(Modal, {
+          animated: true,
+          stretched: true,
+          props: { from: 'Home' },
+        });
       },
       showModalFullScreen() {
         console.log('tapped button "show modal"');
-        this.$showModal(Modal, { fullscreen: true, props: { from: 'Home' }, });
+        this.$showModal(Modal, {
+          fullscreen: true,
+          animated: true,
+          stretched: true,
+          props: { from: 'Home' },
+        });
       },
     },
   }
