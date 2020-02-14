@@ -1,20 +1,20 @@
 <template>
     <Page>
-        <ActionBar title="Home"/>
+        <ActionBar title="Hello world!"/>
         <StackLayout>
-            <Button text="Go to HelloWorld" @tap="goToHelloWorld" />
+            <Button text="Go to home" @tap="goToHome" />
         </StackLayout>
     </Page>
 </template>
 
 <script >
-  import HelloWorld from '@/pages/HelloWorld'
+  import home from '@/components/App'
   export default {
-    name: 'home',
+    name: 'HelloWolrd',
     methods: {
-      goToHelloWorld() {
-        console.log('tapped button "go to helloworld"');
-        this.$navigateTo(HelloWorld);
+      goToHome() {
+        console.log('tapped button "go to home"');
+        this.$navigateTo(home);
       },
     },
   }
