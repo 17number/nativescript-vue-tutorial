@@ -2,6 +2,7 @@
     <Page @swipe="onSwipe">
         <ActionBar title="Home"/>
         <StackLayout>
+            <Label :text="`Access counter: ${access}`" />
             <Button text="Go to HelloWorld" @tap="goToHelloWorld" />
             <Button text="Show modal" @tap="showModal" />
             <Button text="Show modal(Full Screen)" @tap="showModalFullScreen" />
@@ -12,8 +13,19 @@
 <script >
   import HelloWorld from '@/pages/HelloWorld'
   import Modal from '@/pages/Modal'
+  const appSettings = require("tns-core-modules/application-settings");
+
   export default {
     name: 'home',
+    data() {
+      return {
+        access: 0,
+      };
+    },
+    mounted() {
+      this.access = appSettings.getNumber("access", 0) + 1;
+      appSettings.setNumber("access", this.access);
+    },
     methods: {
       goToHelloWorld() {
         console.log('tapped button "go to helloworld"');
@@ -65,6 +77,11 @@
 </script>
 
 <style scoped>
+    Label {
+        vertical-align: center;
+        text-align: center;
+    }
+
     ActionBar {
         background-color: #53ba82;
         color: #ffffff;
