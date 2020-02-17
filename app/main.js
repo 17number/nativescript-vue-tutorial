@@ -20,10 +20,14 @@ const onPushTokenReceived = token => {
   appSettings.setString("fcm_token", token);
 };
 
+const onMessageReceived = message => {
+  console.log({message});
+};
+
 // Firebase プラグイン 初期化
 firebase.init({
-  // プッシュ通知用トークンの更新
   onPushTokenReceivedCallback: onPushTokenReceived,
+  onMessageReceivedCallback: onMessageReceived,
 })
   .then(
     () => console.log("firebase.init success"),
