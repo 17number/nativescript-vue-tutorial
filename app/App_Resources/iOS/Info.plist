@@ -52,8 +52,10 @@
     <string>remote-notification</string>
   </array>
   <key>NSCameraUsageDescription</key>
-  <string>QRコードのスキャンに利用</string>
+  <string>プロフィール画像の撮影、QRコードのスキャンに利用</string>
   <key>NSFaceIDUsageDescription</key>
   <string>FaceID 利用詳細(理由など)</string>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>フォトライブラリ利用の詳細情報</string>
 </dict>
 </plist>

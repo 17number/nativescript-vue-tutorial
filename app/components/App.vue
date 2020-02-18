@@ -8,6 +8,8 @@
             <Button text="Show modal(Full Screen)" @tap="showModalFullScreen" />
             <Button text="Scan QR Code" @tap="goToScanQR" />
             <Button text="Check biometric auth" @tap="goToBioAuth" />
+            <Button text="Take a photo" @tap="takePhoto" />
+            <Image :src="image" v-if="image" />
         </StackLayout>
     </Page>
 </template>
@@ -17,6 +19,7 @@
   import ScanQR from '@/pages/ScanQR'
   import BioAuth from '@/pages/BioAuth'
   import Modal from '@/pages/Modal'
+  import * as camera from 'nativescript-camera';
   const appSettings = require("tns-core-modules/application-settings");
 
   export default {
@@ -24,6 +27,7 @@
     data() {
       return {
         access: 0,
+        image: null,
       };
     },
     mounted() {
@@ -87,6 +91,32 @@
             break;
         }
         console.log(`onSwipe, direction: ${direction}(${args.direction})`);
+      },
+      takePhoto() {
+        // 権限の要求
+        camera.requestPermissions().then(
+          () => {
+            console.log('Permitted');
+            camera.takePicture({
+              keepAspectRatio: true,
+              saveToGallery: false,
+              allowsEditing: true,
+              cameraFacing: 'rear',
+            }).then(imageAsset => {
+                console.log({imageAsset});
+                this.image = imageAsset;
+              })
+              .catch(err => console.error({err}));
+          },
+          () => {
+            console.log('Denied');
+            alert({
+              title: 'カメラ利用',
+              message: 'カメラを利用するには「設定」→「プライバシー」から「写真」と「カメラ」の利用を許可してください',
+              okButtonText: 'OK',
+            })
+          },
+        );
       },
     },
   }
