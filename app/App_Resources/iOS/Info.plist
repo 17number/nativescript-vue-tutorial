@@ -51,5 +51,7 @@
   <array>
     <string>remote-notification</string>
   </array>
+  <key>NSCameraUsageDescription</key>
+  <string>QRコードのスキャンに利用</string>
 </dict>
 </plist>

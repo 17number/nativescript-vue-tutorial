@@ -6,12 +6,14 @@
             <Button text="Go to HelloWorld" @tap="goToHelloWorld" />
             <Button text="Show modal" @tap="showModal" />
             <Button text="Show modal(Full Screen)" @tap="showModalFullScreen" />
+            <Button text="Scan QR Code" @tap="goToScanQR" />
         </StackLayout>
     </Page>
 </template>
 
 <script >
   import HelloWorld from '@/pages/HelloWorld'
+  import ScanQR from '@/pages/ScanQR'
   import Modal from '@/pages/Modal'
   const appSettings = require("tns-core-modules/application-settings");
 
@@ -30,6 +32,12 @@
       goToHelloWorld() {
         console.log('tapped button "go to helloworld"');
         this.$navigateTo(HelloWorld, {
+          transitionAndroid: { name: 'slide' },
+        });
+      },
+      goToScanQR() {
+        console.log('tapped button "go to scanQR"');
+        this.$navigateTo(ScanQR, {
           transitionAndroid: { name: 'slide' },
         });
       },

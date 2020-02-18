@@ -35,6 +35,12 @@ firebase.init({
     (error) => console.error(`firebase.init error: ${error}`)
   );
 
+// QR Scan
+Vue.registerElement(
+  'BarcodeScanner',
+  () => require('nativescript-barcodescanner').BarcodeScannerView
+);
+
 // Prints Vue logs when --env.production is *NOT* set while building
 Vue.config.silent = (TNS_ENV === 'production')
 
