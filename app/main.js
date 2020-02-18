@@ -28,6 +28,7 @@ const onMessageReceived = message => {
 firebase.init({
   onPushTokenReceivedCallback: onPushTokenReceived,
   onMessageReceivedCallback: onMessageReceived,
+  showNotificationsWhenInForeground: true,
 })
   .then(
     () => console.log("firebase.init success"),
