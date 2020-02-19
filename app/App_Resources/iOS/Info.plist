@@ -53,5 +53,7 @@
   </array>
   <key>NSCameraUsageDescription</key>
   <string>QRコードのスキャンに利用</string>
+  <key>NSFaceIDUsageDescription</key>
+  <string>FaceID 利用詳細(理由など)</string>
 </dict>
 </plist>
