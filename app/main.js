@@ -1,6 +1,5 @@
 import Vue from 'nativescript-vue'
 import App from './components/App'
-import router from './router'
 
 import VueDevtools from 'nativescript-vue-devtools'
 if(TNS_ENV !== 'production') {
@@ -45,6 +44,5 @@ Vue.registerElement(
 Vue.config.silent = (TNS_ENV === 'production')
 
 new Vue({
-  router,
   render: h => h('frame', [h(App)])
 }).$start()
