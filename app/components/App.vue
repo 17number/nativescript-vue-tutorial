@@ -9,6 +9,7 @@
             <Button text="Scan QR Code" @tap="goToScanQR" />
             <Button text="Check biometric auth" @tap="goToBioAuth" />
             <Button text="Take a photo" @tap="takePhoto" />
+            <Button text="Select a photo" @tap="selectPhoto" />
             <Image :src="image" v-if="image" />
         </StackLayout>
     </Page>
@@ -20,6 +21,7 @@
   import BioAuth from '@/pages/BioAuth'
   import Modal from '@/pages/Modal'
   import * as camera from 'nativescript-camera';
+  import * as imagepicker from 'nativescript-imagepicker';
   const appSettings = require("tns-core-modules/application-settings");
 
   export default {
@@ -117,6 +119,13 @@
             })
           },
         );
+      },
+      selectPhoto() {
+        const context = imagepicker.create({ mode: 'single' });
+        context.authorize()
+          .then(() => context.present())
+          .then(selection => this.image = selection[0])
+          .catch(err => console.error({err}));
       },
     },
   }
