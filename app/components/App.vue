@@ -8,8 +8,7 @@
             <Button text="Show modal(Full Screen)" @tap="showModalFullScreen" />
             <Button text="Scan QR Code" @tap="goToScanQR" />
             <Button text="Check biometric auth" @tap="goToBioAuth" />
-            <Button text="Take a photo" @tap="takePhoto" />
-            <Button text="Select a photo" @tap="selectPhoto" />
+            <Button text="Take or select a photo" @tap="takeOrSelectPhoto" />
             <Image :src="image" v-if="image" />
         </StackLayout>
     </Page>
@@ -93,6 +92,23 @@
             break;
         }
         console.log(`onSwipe, direction: ${direction}(${args.direction})`);
+      },
+      takeOrSelectPhoto() {
+        action("Take or Select a Photo", "Cancel", ["Take a photo", "Select from library"])
+          .then(result => {
+            switch (result) {
+              case "Take a photo":
+                this.takePhoto();
+                break;
+
+              case "Select from library":
+                this.selectPhoto();
+                break;
+
+              default:
+                break;
+            }
+          });
       },
       takePhoto() {
         // 権限の要求
