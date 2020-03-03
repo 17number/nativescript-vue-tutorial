@@ -10,6 +10,7 @@
             <Button text="Check biometric auth" @tap="goToBioAuth" />
             <Button text="Take or select a photo" @tap="takeOrSelectPhoto" />
             <Image :src="image" v-if="image" />
+            <Button text="Go to tab page" @tap="goToTabPage" />
         </StackLayout>
     </Page>
 </template>
@@ -19,6 +20,7 @@
   import ScanQR from '@/pages/ScanQR'
   import BioAuth from '@/pages/BioAuth'
   import Modal from '@/pages/Modal'
+  import BottomTab from '@/tabs/BottomTab'
   import * as camera from 'nativescript-camera';
   import * as imagepicker from 'nativescript-imagepicker';
   const appSettings = require("tns-core-modules/application-settings");
@@ -51,6 +53,11 @@
       goToBioAuth() {
         console.log('tapped button "go to scanQR"');
         this.$navigateTo(BioAuth, {
+          transitionAndroid: { name: 'slide' },
+        });
+      },
+      goToTabPage() {
+        this.$navigateTo(BottomTab, {
           transitionAndroid: { name: 'slide' },
         });
       },
