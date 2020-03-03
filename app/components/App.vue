@@ -11,6 +11,7 @@
             <Button text="Take or select a photo" @tap="takeOrSelectPhoto" />
             <Image :src="image" v-if="image" />
             <Button text="Go to tab page" @tap="goToTabPage" />
+            <Button text="Go to bottom nav page" @tap="goToBottomNavPage" />
         </StackLayout>
     </Page>
 </template>
@@ -21,6 +22,7 @@
   import BioAuth from '@/pages/BioAuth'
   import Modal from '@/pages/Modal'
   import BottomTab from '@/tabs/BottomTab'
+  import BottomNav from '@/tabs/BottomNav'
   import * as camera from 'nativescript-camera';
   import * as imagepicker from 'nativescript-imagepicker';
   const appSettings = require("tns-core-modules/application-settings");
@@ -58,6 +60,11 @@
       },
       goToTabPage() {
         this.$navigateTo(BottomTab, {
+          transitionAndroid: { name: 'slide' },
+        });
+      },
+      goToBottomNavPage() {
+        this.$navigateTo(BottomNav, {
           transitionAndroid: { name: 'slide' },
         });
       },
